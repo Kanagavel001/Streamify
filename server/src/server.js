@@ -27,9 +27,9 @@ app.use('/api/users', userRoutes);
 app.use('/api/chat', chatRouters);
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, "../client/build")));
+    app.use(express.static(path.join(__dirname, "../client/dist")));
 
-    app.get("*", (req, res) => {
+    app.all("/{*splat}", (req, res) => {
         res.sendFile(path.join(__dirname, "../client", "dist", "index.html"))
     });
 }
